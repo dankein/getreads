@@ -36,7 +36,8 @@ process URLS {
 
     script:
     """
-    cat "$jsonfile" | jq ".\$(basename $jsonfile | cut -f 1 -d .).files.ftp[].url" | grep "q.gz" > \$(basename "$jsonfile"  | sed 's/ftp:/http:/g' | cut -f 1 -d .).txt
+    cat "$jsonfile" | jq ".\$(basename $jsonfile | cut -f 1 -d .).files.ftp[].url" | grep "q.gz" > \$(basename "$jsonfile" | cut -f 1 -d .).txt
+    sed -i 's/ftp:/http:/g' ${base_name}.txt
     """
 }
 
