@@ -65,7 +65,8 @@ process VANILLA_FFQ  {
 
     script:
     """
-    ffq "$id" > "${id}.json"
+    ffq "$id" > "${id}1.json"
+    "${id}1.json" | sed 's/ftp:/http:/g' > "${id}.json"
     sleep $sleep
     """
 }
@@ -88,6 +89,7 @@ process FFQ_NORETRY  {
     script:
     """
     ffq "$id" > "${id}.json"
+    "${id}1.json" | sed 's/ftp:/http:/g' > "${id}.json"
     sleep $sleep
     """
 }
