@@ -70,7 +70,8 @@ process WGET {
     script:
     """
     echo \$(cat "$file")
-    cat "$file" | xargs wget 
+    cat  "$file" | sed 's/ftp:/http:/g' > "$file" | 
+    cat "$file" |  xargs wget 
     """
 }
 
